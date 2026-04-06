@@ -6,9 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import rainbow from "../assets/rainbow.jpg"
 import oreoice from "../assets/oreoice.jpg"
-import { motion } from 'framer-motion'
 import './Sliderswiper.css'
-import { Link } from "react-router-dom";
 const Slideswiper = () => {
     const data = [
         {
@@ -48,16 +46,12 @@ const Slideswiper = () => {
             {/* Loop through the data array to create multiple slides */}
             {data.map((item, index) => (
                 <SwiperSlide className="swiperslide" key={index}>
-                    <motion.div className="card"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                    >
+                    <div className="card">
                         <img className='img' src={item.Image} alt={item.Title} />
                         <h2>{item.Title}</h2>
                         <p>{item.Description}</p>
-                        <Link to="/Product"><button className='card-btn'>{item.Button}</button></Link>
-                    </motion.div>
+                        <button className='card-btn'>{item.Button}</button>
+                    </div>
                 </SwiperSlide>
             ))}
         </Swiper >

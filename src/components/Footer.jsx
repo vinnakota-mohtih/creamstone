@@ -1,7 +1,6 @@
 import React from 'react'
 import './Footer.css'
 import logo from '../assets/creamlogo.png'
-import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -19,9 +18,9 @@ const Footer = () => {
                 <div className='footer-right'>
                     <div className='footer-right-links'>
                         <ul>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/about">About</Link></li>
-                            <li><Link to="/contact">Contact</Link></li>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
                         </ul>
 
                     </div>

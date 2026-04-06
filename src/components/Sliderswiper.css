@@ -1,11 +1,20 @@
 .cards {
     display: flex;
+
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 60%;
-    color: var(--text-color);
+
+
+    color: rgb(0, 0, 0);
+
+    background: rgba(255, 255, 255, 0.1);
+
+
+
 }
+
 
 .swiperslide {
     display: flex;
@@ -13,6 +22,8 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+
+
 }
 
 .card {
@@ -26,25 +37,20 @@
     -webkit-backdrop-filter: blur(14px);
 
     border-radius: 18px;
-    border: 1px solid var(--border-color);
-    background-color: var(--card-bg);
-    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #ffffff;
+    box-shadow: 0 8px 32px #997f7f;
+
 }
 
 .card:hover {
-    background-color: var(--primary-color);
-    color: var(--primary-text, #ffffff);
+    background-color: #5A3E36;
+    color: #ffffff;
     backdrop-filter: blur(12px);
     opacity: 0.8;
-    border: 1px solid var(--primary-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    box-shadow: 0 8px 32px var(--shadow-color, rgba(0, 0, 0, 0.1));
-}
-
-.card:hover .card-btn {
-    background-color: var(--primary-color);
-    color: var(--primary-text, #ffffff);
-    border: 1px solid white;
+    box-shadow: 0 8px 32px rgba(0, 0, 255, 0.2);
 }
 
 .img {
@@ -54,34 +60,37 @@
     padding: 20px;
 }
 
+
+
 .card-btn {
     width: 100px;
     height: 30px;
     background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    color: #000000;
+    border: 1px solid black;
     border-radius: 50px;
     cursor: pointer;
     margin-right: 50px;
 }
 
 .card-btn:hover {
-    background-color: var(--accent-color);
-    color: var(--primary-text, #ffffff);
+    background-color: #98b516;
+    color: #ffffff;
 }
 
 .swiper-pagination {
-    color: var(--text-color);
+    color: #000000;
 }
 
 .swiper-pagination-bullet-active {
     margin-top: 50px;
-    background-color: var(--primary-color);
+    background-color: #5A3E36;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--primary-color);
+    color: #5A3E36;
+
 }
 
 .swiper-button-prev {
@@ -90,30 +99,4 @@
 
 .swiper-button-next {
     margin-right: 10px;
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: 90%;
-        margin: 10px auto;
-        padding: 15px;
-    }
-
-    .swiperslide {
-        flex-direction: column;
-    }
-
-    .img {
-        width: 150px;
-        height: 120px;
-        padding: 10px;
-    }
-
-    .card h2 {
-        font-size: 1.2rem;
-    }
-
-    .card p {
-        font-size: 0.9rem;
-    }
 }

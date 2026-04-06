@@ -3,69 +3,42 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 60vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/coverpage.jpeg');
+    height: 300px;
+    background-image: url('../assets/coverpage.jpeg');
     background-size: cover;
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    color: white;
 }
-
 
 .hero-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     width: 100%;
-    padding: 40px 20px;
-    margin-top: -60px;
+    height: 100%;
+    background-color: transparent;
 }
 
-.hero-content .hero-header {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    color: var(--hero-color);
+.hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.hero-content .hero-para {
+.hero-content p {
     font-size: 1.2rem;
-    font-weight: 300;
-    margin-bottom: 30px;
-    color: #e0e0e0;
+    margin-bottom: 1rem;
 }
 
 .hero-content .btn {
-    padding: 12px 36px;
-    border: 2px solid #5A3E36;
-    border-radius: 30px;
+
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: rgb(255, 255, 255);
-    background-color: #5A3E36;
-    transition: all 0.3s ease;
+    border: 1px solid rgb(255, 255, 255);
 }
 
 .hero-content .btn:hover {
-    background-color: transparent;
-    color: rgb(255, 255, 255);
-    border-color: #ffffff;
-}
-
-@media (max-width: 768px) {
-    .hero {
-        min-height: 50vh;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
+    background-color: #f5aaaa;
 }
