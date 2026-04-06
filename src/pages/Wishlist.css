@@ -1,0 +1,6 @@
+.wishlist-container {
+    padding: 20px;
+    color: var(--text-color);
+    margin-left: 100px;
+    gap: 50px;
+}

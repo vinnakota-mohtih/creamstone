@@ -1,0 +1,100 @@
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    height: 70vh;
+    position: relative;
+
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    height: 90%;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+    
+}
+
+.contact-form {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 360px;
+    padding: 10px;
+
+}
+
+.contact-form input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.submit {
+    width: 300px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background-color: var(--primary-color);
+    color: var(--primary-text, #fff);
+    transition: background-color 0.3s;
+}
+
+.submit:hover {
+    background-color: var(--accent-color);
+}
+
+.msg {
+    height: 200px;
+    width: 100%;
+    padding: 10px;
+
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.contact-form label {
+
+    width: 100%;
+    border-radius: 5px;
+
+}
+
+.contact h1 {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--heading-color);
+}
+
+@media (max-width: 768px) {
+    .contact {
+        width: 90%;
+
+    }
+
+    .submit {
+        width: 100%;
+    }
+
+    .contact h1 {
+        font-size: 24px;
+    }
+}
