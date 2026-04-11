@@ -3,26 +3,124 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    height: 100%;
-    color: var(--text-color);
+    padding: 60px 30px;
+    color: var(--card-text);
+    gap: 50px;
+}   
+
+.container h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
 }
 
 .about {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--text-color);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--card-text-light);
+    line-height: 1.9;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 !important;
 }
 
+.outlets {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.outlets h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--card-text);
+    margin: 0 0 20px 0 !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+.outlets p {
+    font-size: 1rem;
+    color: var(--card-text-light);
+    line-height: 1.8;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
 
 @media (max-width: 768px) {
     .container {
-        width: 95%;
+        padding: 40px 20px;
+        gap: 35px;
     }
+
+    .container h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
     .about {
-        font-size: 16px;
-        text-align: center;
-        padding: 0 10px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    .outlets h2 {
+        font-size: 1.8rem;
+    }
+
+    .outlets p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 30px 15px;
+        gap: 25px;
+    }
+
+    .container h1 {
+        font-size: 1.6rem;
+    }
+
+    .about {
+        font-size: 0.9rem;
+    }
+
+    .outlets h2 {
+        font-size: 1.4rem;
     }
 }

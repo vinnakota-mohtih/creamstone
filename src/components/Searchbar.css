@@ -5,17 +5,46 @@
     color: #fff;
     width: 100%;
     height: 100%;
-    padding-right: 100px;
-
+    padding: 0;
 }
 
 .searchbar input {
-    width: 600px;
-    height: 30px;
-    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: 42px;
+    border-radius: 25px;
     border: 2px solid white;
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    font-size: 14px;
+    transition: var(--transition);
 }
 
 .searchbar input:hover {
-    cursor: pointer;
+    box-shadow: var(--accent-shadow);
+    border-color: var(--accent-color);
+}
+
+.searchbar input:focus {
+    outline: none;
+    box-shadow: var(--accent-shadow);
+    border-color: var(--accent-color);
+    background: white;
+}
+
+.searchbar input::placeholder {
+    color: var(--text-light);
+}
+
+@media (max-width: 1024px) {
+    .searchbar input {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .searchbar input {
+        max-width: 250px;
+    }
 }

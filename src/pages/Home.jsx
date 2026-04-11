@@ -1,21 +1,20 @@
 import React from 'react'
 import './Home.css'
-import Slideswiper from '../components/Slideswiper.jsx'
+
 import Herosec from '../components/Herosec.jsx'
 import { motion } from 'framer-motion'
 import Scroll from '../components/Scroll.jsx'
 
 
-const Body = () => {
+const Home = () => {
     return (
         <>
             <Herosec />
             <motion.div className='container'>
                 <motion.h1
-                    initial={{ opacity: 0, y: -50 }} // starting state
-                    animate={{ opacity: 1, y: 0 }}  // end state
-                    transition={{ duration: 0.5 }}   // animation timing
-                    style={{ width: 150, height: 100 }}
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
                 >
                     About us
                 </motion.h1>
@@ -35,23 +34,17 @@ const Body = () => {
 
                 </motion.p>
                 <div className='outlets'>
-                    <h1>our outlets</h1>
-                    <p>Cream Stone started in Hyderabad in 2009 and expanded quickly<br></br>
-                        <p>Recent industry coverage reports the brand operates across 7 states, in ~34 cities with over 117 outlets nationwide.<br></br>
-                            Earlier listings show outlets in multiple major cities in South and West India (like Bangalore, Chennai, Vizag, Pune, Kochi, Coimbatore).
-                        </p>
-
+                    <h2>our outlets</h2>
+                    <p>Cream Stone started in Hyderabad in 2009 and expanded quickly.<br />
+                        Recent industry coverage reports the brand operates across 7 states, in ~34 cities with over 117 outlets nationwide.<br />
+                        Earlier listings show outlets in multiple major cities in South and West India (like Bangalore, Chennai, Vizag, Pune, Kochi, Coimbatore).
                     </p>
                 </div>
-                <div className='cards'>
-                    <Slideswiper />
-
-
-                </div>
+             
                 <Scroll />
             </motion.div>
         </>
     )
 }
 
-export default Body
+    export default Home

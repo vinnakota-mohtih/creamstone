@@ -21,7 +21,7 @@ const Wishlist = () => {
                 {wishlist.length === 0 ? (
                     <div className="empty-cart">
                         <p>Your wishlist is empty</p>
-                        <button className="btn" onClick={() => navigate('/Product')}>Explore Flavors</button>
+                        <button className="btn" onClick={() => navigate('/product')}>Explore Flavors</button>
                     </div>
                 ) : (
                     <div className="cart-content">

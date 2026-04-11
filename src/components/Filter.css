@@ -4,81 +4,130 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    height: 100%;
-    margin-top: 40px;
-    padding: 20px;
-    color: rgb(0, 0, 0);
-    margin-left: 100px;
-    background: rgba(255, 255, 255, 0.1);
-    gap: 50px;
+    gap: 35px;
+    padding: 40px 30px;
+    background: var(--page-bg);
+    min-height: min-content;
 }
-
-
 
 .filter-buttons {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 10px;
-    width: 20%;
-    height: 300px;
-    padding: 20px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px #997f7f;
-
+    padding: 25px;
+    width: 300px;
+    height: fit-content;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    gap: 12px;
 }
-
 
 .filter-buttons label {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
-    font-size: 18px;
+    margin: 0;
+    font-size: 14px;
     cursor: pointer;
+    font-weight: 500;
+    color: var(--card-text);
+    transition: var(--transition);
+    width: 100%;
+}
+
+.filter-buttons label:hover {
+    color: var(--primary-color);
+}
+
+.filter-buttons input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--card-bg);
+    flex-shrink: 0;
+}
+
+.filter-buttons input[type="checkbox"]:hover {
+    background: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.filter-buttons input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    border-color: var(--primary-color);
 }
 
 .slides {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 80%;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    flex: 1;
+    gap: 24px;
+    width: 100%;
 }
 
-.slide {
-    width: 250px;
-    height: 400px;
-    padding: 30px;
-    background: #FFFFFF;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 8px 32px #997f7f;
+@media (max-width: 1024px) {
+    .filter {
+        flex-direction: column;
+        gap: 25px;
+        padding: 30px 20px;
+    }
 
-    border-radius: 10px;
+    .filter-buttons {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        position: static;
+        gap: 15px;
+    }
 
+    .filter-buttons label {
+        flex: 0 1 calc(50% - 8px);
+    }
+
+    .slides {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
 }
 
-.slide img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+@media (max-width: 768px) {
+    .filter {
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    .filter-buttons label {
+        flex: 1;
+        font-size: 13px;
+    }
+
+    .slides {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+    }
 }
 
-.slide .btn {
+@media (max-width: 480px) {
+    .filter {
+        padding: 15px 10px;
+    }
 
-    background:transparent;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    color: black;
-}
-.slide .btn:hover{
-    background-color: #5A3E36;
-    color: #ffffff;
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-buttons label {
+        flex: 1;
+        font-size: 12px;
+    }
+
+    .slides {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
 }

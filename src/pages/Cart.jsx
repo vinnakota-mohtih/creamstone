@@ -21,7 +21,7 @@ const Cart = () => {
                 {cart.length === 0 ? (
                     <div className="empty-cart">
                         <p>Your cart is empty</p>
-                        <button className="btn" onClick={() => navigate('/')}>Continue Shopping</button>
+                        <button className="btn" onClick={() => navigate('/product')}>Continue Shopping</button>
                     </div>
                 ) : (
                     <div className="cart-content">

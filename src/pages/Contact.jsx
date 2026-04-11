@@ -2,7 +2,7 @@ import React from "react";
 import './Contact.css'
 import { motion } from 'framer-motion'
 
-const contact = () => {
+const Contact = () => {
     return (
         <>
             <div className="contact-container">
@@ -15,7 +15,7 @@ const contact = () => {
                         <label htmlFor="email">Email</label>
                         <input type="email" placeholder="email" />
                         <label htmlFor="msg">Message</label>
-                        <input className="msg" type="text" placeholder="message" />
+                        <textarea className="msg" placeholder="message" />
                         <motion.button className="submit" whileHover={{ scale: 1.05, backgroundColor: "" }}
                             whileTap={{ scale: 0.9 }}>
                             submit</motion.button>
@@ -27,4 +27,4 @@ const contact = () => {
     )
 }
 
-export default contact
+export default Contact

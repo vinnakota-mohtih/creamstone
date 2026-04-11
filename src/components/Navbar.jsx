@@ -1,17 +1,18 @@
 import React from 'react'
 import './Navbar.css'
-import heroImg from '../assets/hero.png'
+import { Link } from 'react-router-dom'
+
 const Navbar = () => {
     return (
         <>
-            <header>
-
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+            <div className='navbar-container'>
+                <ul className='navbar-links'>
+                    <Link to="/"><li>Home</li></Link>
+                    <Link to="/about"><li>About</li></Link>
+                    <Link to="/contact"><li>Contact</li></Link>
+                    <Link to="/product"><li>Products</li></Link>
                 </ul>
-            </header>
+            </div>
         </>
     )
 }

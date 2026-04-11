@@ -2,62 +2,67 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--card-text);
+    line-height: 1.8;
 }
 
 .about-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
 .about-header h1 {
     font-size: 3rem;
-    color: var(--heading-color);
-    margin-bottom: 15px;
+    font-weight: 800;
+    margin-bottom: 20px;
     position: relative;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     display: inline-block;
 }
 
 .about-header h1::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 80px;
     height: 4px;
-    background-color: var(--accent-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 2px;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    color: var(--text-muted);
+    font-size: 1.1rem;
+    color: var(--card-text-light);
     font-style: italic;
     font-weight: 500;
+    margin-top: 30px;
 }
 
 .about-content {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 50px;
 }
 
 .about-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
     overflow: hidden;
 }
 
 .about-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px var(--card-shadow);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
 }
 
 .about-text {
@@ -69,8 +74,9 @@
 }
 
 .about-section h2 {
-    font-size: 2rem;
-    color: var(--accent-color);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-dark);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -79,17 +85,18 @@
 .about-section h2::before {
     content: '';
     display: inline-block;
-    width: 8px;
-    height: 24px;
-    background-color: var(--accent-color);
-    margin-right: 12px;
-    border-radius: 4px;
+    width: 5px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    margin-right: 15px;
+    border-radius: 2px;
 }
 
 .about-section p {
-    font-size: 1.1rem;
-    color: var(--text-color);
+    font-size: 0.95rem;
+    color: var(--text-light);
     text-align: justify;
+    line-height: 1.7;
 }
 
 .about-image {
@@ -101,52 +108,64 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
-.hero-container1 {
-    width: 100%;
-    height: 100%;
-
+.image-right {
+    flex-direction: row;
 }
 
-.hero1 {
-    width: 100%;
-    height: 580px;
-
+.image-right .about-text {
+    order: 1;
 }
 
-.about-footer {
-    width: 100%;
-    height: 100%;
+.image-right .about-image {
+    order: 2;
 }
 
-.about-footer img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+@media (max-width: 768px) {
+    .about-container {
+        padding: 40px 15px;
+    }
 
-@media (min-width: 900px) {
+    .about-header h1 {
+        font-size: 2.2rem;
+    }
+
     .about-section {
-        flex-direction: row;
-        align-items: stretch;
+        flex-direction: column;
     }
 
-    .image-right .about-text {
-        order: 1;
+    .image-right {
+        flex-direction: column;
     }
 
-    .image-right .about-image {
-        order: 2;
+    .about-text {
+        padding: 30px 20px;
     }
 
-    .image-left .about-text {
-        order: 2;
+    .about-section p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-container {
+        padding: 20px 15px;
     }
 
-    .image-left .about-image {
-        order: 1;
+    .about-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-text {
+        padding: 15px;
+    }
+
+    .about-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .about-section p {
+        font-size: 0.9rem;
     }
 }

@@ -3,32 +3,43 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-    background-color: var(--bg-color);
+    height: 350px;
+    
+    border-radius: var(--border-radius);
+    margin-top: 40px;
 }
 
 .scroll-container {
     overflow: hidden;
-    width: 100%;
-
+    width: 95%;
+    height: 100%;
 }
 
 .scroll-track {
     display: flex;
     width: max-content;
-    animation: scroll 25s linear infinite;
+    height: 100%;
+    animation: scroll 30s linear infinite;
 }
 
 .card1 {
     flex: 0 0 auto;
-    margin: 0 15px;
+    margin: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card1:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
 }
 
 .card1 {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 /* 🔁 Infinite smooth loop */
@@ -39,5 +50,40 @@
 
     to {
         transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 1024px) {
+    .scroll {
+        height: 300px;
+    }
+
+    .card1 {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll {
+        height: 200px;
+        margin-top: 30px;
+    }
+
+    .card1 {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll {
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .card1 {
+        width: 130px;
+        height: 130px;
     }
 }
