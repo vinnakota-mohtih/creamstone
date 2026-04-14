@@ -4,15 +4,25 @@ import Navbar from './Navbar.jsx'
 import Searchbar from './Searchbar.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 import { Link } from 'react-router-dom'
-import { FiShoppingCart, FiHeart } from 'react-icons/fi'
+import { FiShoppingCart, FiHeart, FiUser } from 'react-icons/fi'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import heroImg from '../assets/creamlogo.png'
+import { FiLogOut } from 'react-icons/fi'
 
 const Header = () => {
     const { cartCount } = useCart()
+    const { currentUser, isAdmin, logout } = useAuth()
+
+    const siteSettings = JSON.parse(localStorage.getItem('siteSettings') || '{"status":"open","promo":""}');
 
     return (
         <>
+            {siteSettings.promo && (
+                <div className="promo-banner" style={{ background: 'var(--primary-color)', color: 'white', textAlign: 'center', padding: '8px', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                    {siteSettings.promo}
+                </div>
+            )}
             <header>
                 <div className="logo">
                     <Link to="/">
@@ -31,6 +41,21 @@ const Header = () => {
                     <Link to="/wishlist" className='btn-icon'>
                         <FiHeart />
                     </Link>
+                    
+                    {currentUser ? (
+                        <div className="user-profile">
+                            <span className="user-name">{currentUser.displayName || 'User'}</span>
+                            <Link to="/orders" className="orders-link" title="My Orders">Orders</Link>
+                            {isAdmin && <Link to="/admin" className="admin-link" title="Admin Dashboard">Admin</Link>}
+                            <button onClick={logout} className="logout-btn" title="Logout">
+                                <FiLogOut />
+                            </button>
+                        </div>
+                    ) : (
+                        <Link to="/login" className='btn-icon' title="Login">
+                            <FiUser />
+                        </Link>
+                    )}
                 </div>
 
                 <Navbar />

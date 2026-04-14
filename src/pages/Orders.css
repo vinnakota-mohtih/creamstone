@@ -1,0 +1,130 @@
+.orders-page {
+    padding-top: 120px;
+    min-height: 100vh;
+    background: var(--bg-color);
+}
+
+.orders-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.orders-container h1 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.order-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.label {
+    font-size: 0.85rem;
+    color: #888;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.status {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status.pending {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+}
+
+.status.delivered {
+    background: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.order-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.item-qty {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.item-price {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.order-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.price {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

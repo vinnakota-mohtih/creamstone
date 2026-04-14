@@ -5,8 +5,29 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+    const { cart, removeFromCart, updateQuantity, cartTotal, clearCart, checkout } = useCart();
     const navigate = useNavigate();
+    const [isCheckingOut, setIsCheckingOut] = React.useState(false);
+
+    const siteSettings = JSON.parse(localStorage.getItem('siteSettings') || '{"status":"open","promo":"","deliveryFee":40}');
+
+    const handleCheckout = async () => {
+        try {
+            setIsCheckingOut(true);
+            // Simulate gathering shipping data for now
+            const mockShipping = {
+                address: "Sample Address",
+                city: "Hyderabad",
+                zip: "500001"
+            };
+            const orderId = await checkout(mockShipping);
+            navigate('/orders');
+        } catch (err) {
+            alert(err.message || "Checkout failed");
+        } finally {
+            setIsCheckingOut(false);
+        }
+    };
 
     return (
         <motion.div 
@@ -63,14 +84,28 @@ const Cart = () => {
                             </div>
                             <div className="summary-row">
                                 <span>Delivery</span>
-                                <span>FREE</span>
+                                <span>{siteSettings.deliveryFee === 0 ? 'FREE' : `₹${siteSettings.deliveryFee}`}</span>
                             </div>
                             <hr />
                             <div className="summary-row total">
                                 <span>Total</span>
-                                <span>₹{cartTotal}</span>
+                                <span>₹{cartTotal + Number(siteSettings.deliveryFee)}</span>
                             </div>
-                            <button className="checkout-btn">Checkout</button>
+
+                            {siteSettings.status === 'closed' ? (
+                                <div className="store-closed-warning" style={{ background: '#ffebee', color: '#c62828', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                                    ⚠️ The store is currently closed. We are not accepting new orders.
+                                </div>
+                            ) : null}
+
+                            <button 
+                                className="checkout-btn" 
+                                onClick={handleCheckout}
+                                disabled={isCheckingOut || siteSettings.status === 'closed'}
+                                style={{ opacity: siteSettings.status === 'closed' ? 0.5 : 1 }}
+                            >
+                                {isCheckingOut ? "Processing..." : "Checkout"}
+                            </button>
                             <button className="clear-btn" onClick={clearCart}>Clear Cart</button>
                         </div>
                     </div>

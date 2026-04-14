@@ -1,10 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from './AuthContext';
+import { db } from '../firebase/firebaseConfig';
+import { doc, setDoc, getDoc, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
+    const { currentUser } = useAuth();
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem('creamstone-cart');
         return savedCart ? JSON.parse(savedCart) : [];
@@ -15,26 +19,44 @@ export const CartProvider = ({ children }) => {
         return savedWishlist ? JSON.parse(savedWishlist) : [];
     });
 
+    const [isSyncing, setIsSyncing] = useState(false);
+
+    // Initial load from Firestore when user logs in
+    useEffect(() => {
+        if (currentUser) {
+            const fetchUserData = async () => {
+                const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
+                if (userDoc.exists()) {
+                    const data = userDoc.data();
+                    if (data.cart) setCart(data.cart);
+                    if (data.wishlist) setWishlist(data.wishlist);
+                }
+            };
+            fetchUserData();
+        }
+    }, [currentUser]);
+
+    // Save to LocalStorage and Firestore
     useEffect(() => {
         localStorage.setItem('creamstone-cart', JSON.stringify(cart));
-    }, [cart]);
+        if (currentUser && !isSyncing) {
+            setDoc(doc(db, 'users', currentUser.uid), { cart }, { merge: true });
+        }
+    }, [cart, currentUser]);
 
     useEffect(() => {
         localStorage.setItem('creamstone-wishlist', JSON.stringify(wishlist));
-    }, [wishlist]);
+        if (currentUser && !isSyncing) {
+            setDoc(doc(db, 'users', currentUser.uid), { wishlist }, { merge: true });
+        }
+    }, [wishlist, currentUser]);
 
     const [searchQuery, setSearchQuery] = useState('');
     const [toast, setToast] = useState(null);
 
-    useEffect(() => {
-        if (toast) {
-            const timer = setTimeout(() => setToast(null), 3000);
-            return () => clearTimeout(timer);
-        }
-    }, [toast]);
-
     const showToast = (message) => {
         setToast(message);
+        setTimeout(() => setToast(null), 3000);
     };
 
     const addToCart = (product) => {
@@ -70,8 +92,29 @@ export const CartProvider = ({ children }) => {
             if (isWishlisted) {
                 return prevWishlist.filter((item) => item.id !== product.id);
             }
+            showToast(`Added to favorites!`);
             return [...prevWishlist, product];
         });
+    };
+
+    const checkout = async (shippingData) => {
+        if (!currentUser) throw new Error("Must be logged in to checkout");
+        if (cart.length === 0) throw new Error("Cart is empty");
+
+        const orderData = {
+            userId: currentUser.uid,
+            userName: currentUser.displayName,
+            items: cart,
+            total: cartTotal,
+            status: 'Pending',
+            createdAt: serverTimestamp(),
+            shipping: shippingData
+        };
+
+        const docRef = await addDoc(collection(db, 'orders'), orderData);
+        clearCart();
+        showToast("Order placed successfully!");
+        return docRef.id;
     };
 
     const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
@@ -86,6 +129,7 @@ export const CartProvider = ({ children }) => {
             updateQuantity, 
             clearCart, 
             toggleWishlist,
+            checkout,
             cartCount,
             cartTotal,
             searchQuery,

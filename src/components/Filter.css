@@ -24,44 +24,34 @@
     gap: 12px;
 }
 
-.filter-buttons label {
+.filter-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 0;
+    width: 100%;
+    padding: 12px 15px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
     font-size: 14px;
-    cursor: pointer;
     font-weight: 500;
     color: var(--card-text);
-    transition: var(--transition);
-    width: 100%;
-}
-
-.filter-buttons label:hover {
-    color: var(--primary-color);
-}
-
-.filter-buttons input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--primary-color);
-    border-radius: 4px;
     cursor: pointer;
+    text-align: left;
     transition: var(--transition);
-    background: var(--card-bg);
-    flex-shrink: 0;
 }
 
-.filter-buttons input[type="checkbox"]:hover {
-    background: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+.filter-btn:hover {
+    background: rgba(255, 107, 157, 0.05);
+    color: var(--primary-color);
+    transform: translateX(5px);
 }
 
-.filter-buttons input[type="checkbox"]:checked {
+.filter-btn.active {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-    border-color: var(--primary-color);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.3);
+    font-weight: 600;
 }
 
 .slides {

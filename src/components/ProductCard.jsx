@@ -4,12 +4,18 @@ import { FiShoppingCart, FiHeart } from 'react-icons/fi';
 import { FaHeart } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import './ProductCard.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product, index }) => {
   const { addToCart, toggleWishlist, wishlist } = useCart();
+  const navigate = useNavigate();
   const [isWishlisted, setIsWishlisted] = useState(
     wishlist.some(item => item.id === product.id)
   );
+
+  const handleCardClick = () => {
+    navigate(`/product/${product.id}`);
+  };
 
   const handleWishlist = () => {
     toggleWishlist(product);
@@ -40,9 +46,9 @@ const ProductCard = ({ product, index }) => {
       exit="exit"
       layout
     >
-      <div className="product-card-image">
+      <div className="product-card-image" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
         <img src={product.image} alt={product.title} />
-        <div className="product-overlay">
+        <div className="product-overlay" onClick={(e) => e.stopPropagation()}>
           <motion.button 
             className="overlay-btn" 
             aria-label="Add to Wishlist"
@@ -64,7 +70,7 @@ const ProductCard = ({ product, index }) => {
         </div>
         {product.bestSeller && <span className="best-seller-tag">Best Seller</span>}
       </div>
-      <div className="product-card-info">
+      <div className="product-card-info" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
         <p className="category">{product.category}</p>
         <h3>{product.title}</h3>
         <p className="description">{product.description}</p>

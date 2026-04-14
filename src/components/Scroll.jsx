@@ -1,22 +1,23 @@
 import React from 'react'
 import './Scroll.css'
-import ice1 from '../assets/Scroll/ice.jpeg'
-import ice2 from '../assets/Scroll/ice2.jpg'
-import ice3 from '../assets/Scroll/ice3.png'
-import ice4 from '../assets/Scroll/ice4.png'
-import ice5 from '../assets/Scroll/ice5.png'
-import ice6 from '../assets/Scroll/ice6.png'
+import useProducts from '../hooks/useProducts'
 
 const Scroll = () => {
-    const images = [ice1, ice2, ice3, ice4, ice5, ice6];
+    const { products, loading } = useProducts();
+    const bestSellers = products.filter(p => p.bestSeller);
+    
+    if (loading) return null;
+
+    const displayItems = bestSellers.length > 0 ? bestSellers : [];
+
     return (
         <>
             <div className='scroll'>
                 <div className="scroll-container">
                     <div className="scroll-track">
-                        {[...images, ...images].map((img, i) => (
+                        {[...displayItems, ...displayItems].map((item, i) => (
                             <div className="card1" key={i}>
-                                <img className='card1' src={img} alt="" />
+                                <img className='card1' src={item.image} alt={item.title} />
                             </div>
                         ))}
                     </div>

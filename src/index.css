@@ -65,6 +65,7 @@
     --primary-shadow: 0 4px 12px rgba(224, 173, 125, 0.2);
     --primary-shadow-hover: 0 8px 20px rgba(224, 173, 125, 0.35);
     --accent-shadow: 0 4px 15px rgba(224, 173, 125, 0.25);
+    --text-dark: #000000;
 }
 
 * {
