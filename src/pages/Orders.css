@@ -12,7 +12,7 @@
 
 .orders-container h1 {
     font-size: 2.5rem;
-    color: var(--text-dark);
+      color:var(--text);
     margin-bottom: 40px;
     text-align: center;
 }
@@ -24,7 +24,8 @@
 }
 
 .order-card {
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--bg-color);
+    color:var(--text);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 25px;
@@ -45,7 +46,7 @@
 
 .label {
     font-size: 0.85rem;
-    color: #888;
+   color:var(--text);
     margin-right: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -53,7 +54,7 @@
 
 .value {
     font-weight: 600;
-    color: var(--text-dark);
+    color:var(--text);
 }
 
 .status {
@@ -94,19 +95,19 @@
 
 .item-title {
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text);
     margin: 0;
 }
 
 .item-qty {
     font-size: 0.9rem;
-    color: #666;
+   color:var(--text);
     margin: 0;
 }
 
 .item-price {
     font-weight: 600;
-    color: var(--primary-color);
+      color:var(--text);
 }
 
 .order-footer {
@@ -115,11 +116,12 @@
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: flex-end;
+     color: #ffffff;
 }
 
 .price {
     font-size: 1.25rem;
-    color: var(--primary-color);
+    color: #ffffff;
 }
 
 @media (max-width: 600px) {

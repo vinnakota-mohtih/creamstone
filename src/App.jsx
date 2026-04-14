@@ -11,6 +11,7 @@ import Wishlist from './pages/Wishlist.jsx'
 import Orders from './pages/Orders.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
 import Admin from './pages/Admin.jsx'
+import MyMessages from './pages/MyMessages.jsx'
 import Login from './pages/Login.jsx'
 import Sigin from './pages/Sigin.jsx'
 import { useAuth } from './context/AuthContext'
@@ -40,6 +41,10 @@ function App() {
         <Route 
           path="/orders" 
           element={currentUser ? <Orders /> : <Navigate to="/login" />} 
+        />
+        <Route 
+          path="/my-messages" 
+          element={currentUser ? <MyMessages /> : <Navigate to="/login" />} 
         />
         <Route 
           path="/admin" 

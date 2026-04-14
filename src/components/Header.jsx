@@ -45,8 +45,11 @@ const Header = () => {
                     {currentUser ? (
                         <div className="user-profile">
                             <span className="user-name">{currentUser.displayName || 'User'}</span>
-                            <Link to="/orders" className="orders-link" title="My Orders">Orders</Link>
-                            {isAdmin && <Link to="/admin" className="admin-link" title="Admin Dashboard">Admin</Link>}
+                            <div className="user-links" style={{ display: 'flex', gap: '10px' }}>
+                                <Link to="/orders" className="orders-link" title="My Orders">Orders</Link>
+                                <Link to="/my-messages" className="messages-link" title="My Inquiries">Inquiries</Link>
+                                {isAdmin && <Link to="/admin" className="admin-link" title="Admin Dashboard">Admin</Link>}
+                            </div>
                             <button onClick={logout} className="logout-btn" title="Logout">
                                 <FiLogOut />
                             </button>

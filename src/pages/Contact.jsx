@@ -3,11 +3,13 @@ import './Contact.css'
 import { motion } from 'framer-motion'
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { useAuth } from "../context/AuthContext";
 
 const Contact = () => {
+    const { currentUser } = useAuth();
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
+        name: currentUser?.displayName || "",
+        email: currentUser?.email || "",
         message: ""
     });
     const [status, setStatus] = useState({ loading: false, success: false, error: "" });
@@ -32,7 +34,9 @@ const Contact = () => {
             setStatus({ loading: true, success: false, error: "" });
             await addDoc(collection(db, "messages"), {
                 ...formData,
-                createdAt: serverTimestamp()
+                userId: currentUser?.uid || null,
+                createdAt: serverTimestamp(),
+                status: 'unread'
             });
             setStatus({ loading: false, success: true, error: "" });
             setFormData({ name: "", email: "", message: "" });

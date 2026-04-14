@@ -126,6 +126,28 @@ const Admin = () => {
         }
     };
 
+    const [replyTexts, setReplyTexts] = useState({});
+
+    const sendReply = async (messageId) => {
+        const text = replyTexts[messageId];
+        if (!text || !text.trim()) return;
+
+        try {
+            const msgRef = doc(db, 'messages', messageId);
+            await updateDoc(msgRef, {
+                replies: Array.isArray(messages.find(m => m.id === messageId).replies) 
+                    ? [...(messages.find(m => m.id === messageId).replies), { text, sender: 'admin', timestamp: new Date().toISOString() }]
+                    : [{ text, sender: 'admin', timestamp: new Date().toISOString() }],
+                status: 'replied'
+            });
+            setReplyTexts(prev => ({ ...prev, [messageId]: '' }));
+            alert("Reply sent!");
+        } catch (err) {
+            console.error(err);
+            alert("Error sending reply");
+        }
+    };
+
     if (loading) return <div className="loading" style={{ padding: '120px 40px', textAlign: 'center', fontSize: '1.2rem' }}>Loading Admin Dashboard...</div>;
 
     return (
@@ -313,9 +335,39 @@ const Admin = () => {
                                             <div className="m-header">
                                                 <strong>{m.name}</strong>
                                                 <span>{m.email}</span>
+                                                <span className={`status-badge ${m.status || 'unread'}`}>{m.status || 'unread'}</span>
                                             </div>
-                                            <p>{m.message}</p>
-                                            <span className="m-date">{m.createdAt?.toDate?.()?.toLocaleString?.() || 'Unknown date'}</span>
+                                            <div className="m-body">
+                                                <p className="m-text">"{m.message}"</p>
+                                                <span className="m-date">{m.createdAt?.toDate?.()?.toLocaleString?.() || 'Just now'}</span>
+                                            </div>
+
+                                            {m.replies && m.replies.length > 0 && (
+                                                <div className="admin-replies-list" style={{ marginTop: '15px', background: '#f8f9fa', padding: '10px', borderRadius: '10px' }}>
+                                                    {m.replies.map((re, i) => (
+                                                        <div key={i} className="reply-item" style={{ marginBottom: '8px', borderBottom: '1px solid #eee' }}>
+                                                            <small style={{ color: re.sender === 'admin' ? '#007bff' : 'green' }}>{re.sender === 'admin' ? 'You' : 'Customer'}:</small>
+                                                            <p style={{ margin: '2px 0', fontSize: '0.9rem' }}>{re.text}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            <div className="reply-section" style={{ marginTop: '15px', display: 'flex', gap: '10px' }}>
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="Type a reply..." 
+                                                    value={replyTexts[m.id] || ''}
+                                                    onChange={(e) => setReplyTexts({ ...replyTexts, [m.id]: e.target.value })}
+                                                    style={{ flex: 1, padding: '8px 12px', borderRadius: '20px', border: '1px solid #ddd' }}
+                                                />
+                                                <button 
+                                                    onClick={() => sendReply(m.id)}
+                                                    style={{ padding: '8px 20px', background: 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold' }}
+                                                >
+                                                    Reply
+                                                </button>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
