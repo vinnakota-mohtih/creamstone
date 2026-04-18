@@ -3,10 +3,11 @@ import ferreroImg from '../assets/Ferrero.jpg'
 import oreoImg from '../assets/oreoice.jpg'
 import rainbowImg from '../assets/rainbow.jpg'
 import belgianImg from '../assets/Belgian.png'
+import WillyWonka from '../assets/WillyWonka.png'
 
 const strawberryImg = rainbowImg;
 const mangoImg = rainbowImg;
-const tiramisuImg = dbcImg;
+const tiramisuImg = WillyWonka;
 const shakeImg = oreoImg;
 const cottonCandyImg = rainbowImg;
 const pistachioImg = belgianImg;
@@ -14,7 +15,7 @@ const caramelImg = ferreroImg;
 
 export const staticProducts = [
     // --- SIGNATURE CHOCOLATE CONCEPTS ---
-    { id: '1', title: 'Willy Wonka', category: 'chocolate', image: dbcImg, price: 210, bestSeller: true, description: "Chocolate ice cream mixed with chocolate pastry, choco chips and dark choco fudge.", stock: 50 },
+    { id: '1', title: 'Willy Wonka', category: 'chocolate', image: WillyWonka, price: 210, bestSeller: true, description: "Chocolate ice cream mixed with chocolate pastry, choco chips and dark choco fudge.", stock: 50 },
     { id: '2', title: 'Death By Chocolate', category: 'chocolate', image: dbcImg, price: 220, bestSeller: true, description: "Two scoops of dark chocolate ice cream mixed with crunchy brownies and chocolate fudge.", stock: 40 },
     { id: '3', title: 'Chocoholics', category: 'chocolate', image: belgianImg, price: 180, description: "A perfect blend of dark chocolate ice cream, chocolate ribbon, and crisp chocolate flakes.", stock: 50 },
     { id: '4', title: 'Chocolate Overdose', category: 'chocolate', image: ferreroImg, price: 200, description: "Layers of dense chocolate ice cream with Nutella and roasted nuts.", stock: 35 },
